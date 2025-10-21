@@ -4,8 +4,8 @@
 	include_once('config.php');
 
 //If the button Add Movie in movies.php is pressed, we will get datas that users added into the form, and insert them into database :
-    (isset($_POST['submit']))
-{
+	if(isset($_POST['submit']))
+	{
 
 		$movie_name = $_POST['movie_name'];
 		$movie_desc = $_POST['movie_desc'];

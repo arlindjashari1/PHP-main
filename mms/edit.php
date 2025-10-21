@@ -3,16 +3,11 @@
   We will include config.php for connection with database.
   We will fetch the data from database and show them, and create a form which will allow us to change the datas.
   */
-  <?php
-session_start();
-include_once('config.php');
+	 session_start();
 
-// sigurohu që përdoruesi të ketë role
-$role = $_SESSION['role'] ?? 'guest';
+   include_once('config.php');
 
-// marrim movie si më parë
-$id = $_GET['id'] ?? null;
-if (!$id) { die('ID e pavlefshme'); }
+   $id = $_GET['id'];
 
    $sql = "SELECT * FROM movies WHERE id=:id";
    $selectUser = $conn->prepare($sql);
