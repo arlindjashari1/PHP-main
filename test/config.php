@@ -1,11 +1,16 @@
-
 <?php
-// Update these with your MySQL credentials
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'school_db');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+$host = "localhost";
+$dbname = "news.db";  
+$user = "root";
+$pass = "";
 
-// Base URL (include trailing slash). Adjust if your folder name changes.
-$BASE_URL = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/';
-?>
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Gabim në lidhje: " . $e->getMessage());
+}
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}

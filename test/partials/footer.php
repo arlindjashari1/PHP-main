@@ -1,0 +1,1 @@
+<div style="text-align:center;color:#6b7280;padding:20px 0">© Vegza Media CMS • PHP + MySQL</div>
