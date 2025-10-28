@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $st->fetch();
 
     if ($user && password_verify($p, $user['password'])) {
-        $_SESSION['user'] = ['id'=>$user['id'], 'username'=>$user['username'], 'role'=>$user['role']];
+        $_SESSION['user'] = ['id'=>$user['id'], 'username'=>$user['username'], 'role'=>$user['admin']];
         header('Location: index.php'); exit;
     } else {
         $error = 'Kredencialet janë të pasakta.';
@@ -27,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <?php if ($error): ?><div style="color:#b91c1c;"><?= htmlspecialchars($error) ?></div><?php endif; ?>
   <form method="post">
     <label>Përdoruesi</label>
-    <input type="text" name="username" required>
+    <input type="admin" name="admin" required>
     <label>Fjalëkalimi</label>
-    <input type="password" name="password" required>
+    <input type="admin123" name="admin" required>
     <input type="submit" value="Hyr">
   </form>
   <a href="index.php">⬅ Kthehu</a>
