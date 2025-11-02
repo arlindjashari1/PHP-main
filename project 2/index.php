@@ -38,6 +38,7 @@ require_once '../inc/functions.php';
   <th>Veprime</th>
 </tr>
 <?php foreach($rows as $r): ?>
+
 <tr>
   <td><?= $r['id'] ?></td>
   <td><?= htmlspecialchars($r['title']) ?></td>
