@@ -1,76 +1,71 @@
-<!DOCTYPE html>
-<html lang="sq">
-<head>
-<meta charset="UTF-8">
-<title>Mini CMS - Lajmet</title>
-<link rel="stylesheet" href="style.css"
-
 <?php
-session_start();
-require_once '../inc/functions.php';
-   if (is_logged_in()): ?>
-    Përshëndetje, <?= htmlspecialchars($_SESSION['user']['username']) ?> —
-     href=""></a>href="logout.php">Dil</a>
- 
 
+<link rel="stylesheet" href="C:\xampp\htdocs\xampp\PHP-main\project 2\index.php">
+require __DIR__ . '/config/db.php';
+require __DIR__ . '/functions/helpers.php';
+include __DIR__ . '/partials/header.php';
 
->
-</head>
-<body>
-    <div style="margin:10px 0;">
-  <?php if (is_logged_in()): ?>
-    Përshëndetje, <?= htmlspecialchars($_SESSION['user']['username']) ?> —
-    <a href="logout.php">Dil</a>
-  <?php else: ?>
-    <a href="login.php">Hyr si admin</a>
-  <?php endif; ?>
-</div> 
-<div class="container">
-<h1>📋 Mini CMS - Lajmet</h1>
-<a href="add.php"><button>Shto Lajm</button></a>
+$search = $_GET['q'] ?? '';
+$categoryId = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;
 
-<table>
-<tr>
-  <th>ID</th>
-  <th>Titulli</th>
-  <th>Autori</th>
-  <th>Status</th>
-  <th>Veprime</th>
-</tr>
-<?php foreach($rows as $r): ?>
+$slides = fetchAll($pdo, "SELECT * FROM slides ORDER BY id DESC LIMIT 5");
+$categories = fetchAll($pdo, "SELECT * FROM categories ORDER BY name ASC");
 
-<tr>
-  <td><?= $r['id'] ?></td>
-  <td><?= htmlspecialchars($r['title']) ?></td>
-  <td><?= htmlspecialchars($r['author']) ?></td>
-  <td><?= $r['approved'] ? "✅ Aprovuar" : "❌ Në pritje" ?></td>
-  <td>
-     <?php if (is_admin()): ?>
-    <a href="edit.php?id=<?= $r['id'] ?>">✏️ Edit</a> |
-    <a href="approve.php?id=<?= $r['id'] ?>">✔️ Approve</a> |
-    <a href="delete.php?id=<?= $r['id'] ?>" onclick="return confirm('Fshi lajmin?')">🗑️ Delete</a>
-     <?php endif; ?>
-  <?php  ?>
-    <a href="login.php">Hyr për veprime</a>
-  
-  </td>
+$where = " WHERE status = 'published' ";
+$params = [];
+if($categoryId > 0) { $where .= " AND category_id = :cat "; $params[':cat'] = $categoryId; }
+if($search !== '') { $where .= " AND (title LIKE :q OR content LIKE :q) "; $params[':q'] = '%'.$search.'%'; }
 
-  </tr>
-
-<?php endforeach; ?>
-      
-</table>
-</div>
-</body>
-<?php else: ?>
-    <a href="login.php">Hyr si admin</a>
-  <?php endif; ?><?php  
-    if (is_logged_in()): ?>
-      Përshëndetje, <?= htmlspecialchars($_SESSION['user']['username']) ?> —
-      <a href="logout.php">Dil</a>  
+$posts = fetchAll($pdo, "SELECT p.*, c.name AS category_name FROM posts p
+  LEFT JOIN categories c ON c.id = p.category_id
+  {$where}
+  ORDER BY p.id DESC LIMIT 12", $params);
+?>
+<div class="row mb-3">
+  <div class="col-md-8">
+    <h4>Slider</h4>
+    <?php if ($slides): ?>
+      <?php foreach($slides as $s): ?>
+        <div class="slide-card">
+          <strong><?= esc($s['caption']) ?></strong><br>
+          <small><?= esc($s['image_url']) ?></small>
+        </div>
+      <?php endforeach; ?>
     <?php else: ?>
-      <a href="login.php">Hyr si admin</a>
+      <div class="alert alert-warning">S'ka slajde. Shto disa në panelin admin.</div>
     <?php endif; ?>
-      
-</html>>
-</head> 
+  </div>
+  <div class="col-md-4">
+    <form class="mb-3" method="get">
+      <div class="input-group">
+        <input name="q" value="<?= esc($search) ?>" class="form-control" placeholder="Kërko...">
+        <button class="btn btn-primary">Kërko</button>
+      </div>
+    </form>
+    <div class="list-group">
+      <a class="list-group-item<?= $categoryId===0?' active':'' ?>" href="?">Të gjitha</a>
+      <?php foreach($categories as $c): ?>
+        <a class="list-group-item<?= $categoryId===$c['id']?' active':'' ?>" href="?cat=<?= (int)$c['id'] ?>"><?= esc($c['name']) ?></a>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</div>
+
+<h4>Postimet e fundit</h4>
+<?php if(!$posts): ?>
+  <div class="alert alert-info">Asnjë postim i publikuar ende.</div>
+<?php else: ?>
+  <?php foreach($posts as $p): ?>
+    <div class="post-card">
+      <h5><?= esc($p['title']) ?></h5>
+      <small class="text-muted"><?= esc($p['category_name']) ?></small>
+      <?php if(!empty($p['image'])): ?>
+        <img src="<?= esc($p['image']) ?>" alt="" class="img-fluid my-2">
+      <?php endif; ?>
+      <p><?= nl2br(esc(mb_strimwidth($p['content'], 0, 300, '...'))) ?></p>
+      <a class="btn btn-sm btn-outline-primary" href="public/post.php?id=<?= (int)$p['id'] ?>">Lexo më shumë</a>
+    </div>
+  <?php endforeach; ?>
+<?php endif; ?>
+
+<?php include __DIR__ . '/partials/footer.php'; ?>

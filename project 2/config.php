@@ -1,16 +1,19 @@
 <?php
-$host = "localhost";
-$dbname = "news.db";  
-$user = "root";
-$pass = "";
+// config/db.php
+// Ndrysho DB_NAME, DB_USER, DB_PASS sipas nevojës (XAMPP default: root / bosh).
+const DB_HOST = 'localhost';
+const DB_NAME = 'vegzamedia';
+const DB_USER = 'root';
+const DB_PASS = '';
+
+$dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+$options = [
+  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+];
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
 } catch (PDOException $e) {
-    die("Gabim në lidhje: " . $e->getMessage());
-}
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+  die('DB connection failed: ' . $e->getMessage());
 }

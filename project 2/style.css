@@ -1,9 +1,0 @@
-body { font-family: Arial; background:#f8f9fa; margin:20px; }
-.container { max-width:800px; margin:auto; background:#fff; padding:20px; border-radius:10px; }
-a { text-decoration:none; color:#007bff; }
-button, input[type=submit] { background:#007bff; color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer; }
-table { width:100%; border-collapse:collapse; margin-top:10px; }
-th, td { padding:10px; border-bottom:1px solid #ddd; }
-th { background:#eee; }
-h1, h2 { color:#333; }
-form input, form textarea { width:100%; margin:8px 0; padding:8px; }

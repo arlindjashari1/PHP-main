@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__ . '/config.php';
-unset($_SESSION['user']);
-session_destroy();
-header('Location: index.php');
+require __DIR__ . '/functions/auth.php';
+logout();
+header('Location: /php_mysql_media_starter/login.php');
 exit;
