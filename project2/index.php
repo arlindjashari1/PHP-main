@@ -1,9 +1,9 @@
 <?php
-
-<link rel="stylesheet" href="C:\xampp\htdocs\xampp\PHP-main\project 2\index.php">
-require __DIR__ . '/config/db.php';
-require __DIR__ . '/functions/helpers.php';
-include __DIR__ . '/partials/header.php';
+echo __DIR__ .'/config/db.php';
+exit;
+require  '../config/db.php';
+require   '../functions/helpers.php';
+include   '../partials/header.php';
 
 $search = $_GET['q'] ?? '';
 $categoryId = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;

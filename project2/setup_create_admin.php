@@ -1,5 +1,5 @@
 <?php
-// setup_create_admin.php (ekzekutoje 1 herë: http://localhost/php_mysql_media_starter/setup_create_admin.php)
+
 require __DIR__ . '/config/db.php';
 require __DIR__ . '/functions/helpers.php';
 
