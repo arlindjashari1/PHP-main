@@ -1,9 +1,11 @@
 <?php
-echo __DIR__ .'/config/db.php';
-exit;
-require  '../config/db.php';
-require   '../functions/helpers.php';
-include   '../partials/header.php';
+
+
+
+require __DIR__  .'/helpers.php';
+include   './partials/header.php';
+// $rows = fetchAll($pdo, 'SELECT * FROM some_table');
+// print_r($rows);
 
 $search = $_GET['q'] ?? '';
 $categoryId = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;

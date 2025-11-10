@@ -1,5 +1,5 @@
 <?php
-require  'config/db.php';
+
 
 const DB_HOST = 'localhost';
 const DB_NAME = 'vegzamedia';
