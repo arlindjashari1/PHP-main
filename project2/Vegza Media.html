@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://localhost/PHP-main/project2/index.php?q= -->
+<html lang="sq"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vegza Media</title>
+  <link href="./Vegza Media_files/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .container { max-width: 1000px; }
+    .nav-link.active { font-weight: bold; color: #0d6efd !important; }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-3">
+  <div class="container">
+    <a class="navbar-brand" href="http://localhost/php_mysql_media_starter/index.php">🌐 Vegza Media</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost/php_mysql_media_starter/index.php">Kreu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/php_mysql_media_starter/admin/posts/index.php">Postimet</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/php_mysql_media_starter/admin/categories/index.php">Kategoritë</a>
+        </li>
+              </ul>
+
+      <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+            <a class="nav-link text-primary" href="http://localhost/php_mysql_media_starter/login.php">Hyr</a>
+          </li>
+              </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container"><div class="row mb-3">
+  <div class="col-md-8">
+    <h4>Slider</h4>
+          <div class="alert alert-warning">S'ka slajde. Shto disa në panelin admin.</div>
+      </div>
+  <div class="col-md-4">
+    <form class="mb-3" method="get">
+      <div class="input-group">
+        <input name="q" value="" class="form-control" placeholder="Kërko...">
+        <button class="btn btn-primary">Kërko</button>
+      </div>
+    </form>
+    <div class="list-group">
+      <a class="list-group-item active" href="http://localhost/PHP-main/project2/index.php?">Të gjitha</a>
+              <a class="list-group-item" href="http://localhost/PHP-main/project2/index.php?cat=1">Aktualitet</a>
+              <a class="list-group-item" href="http://localhost/PHP-main/project2/index.php?cat=2">Sport</a>
+          </div>
+  </div>
+</div>
+
+<h4>Postimet e fundit</h4>
+      <div class="post-card">
+      <h5>Postimi i parë</h5>
+      <small class="text-muted">Aktualitet</small>
+            <p>Ky është postimi i parë demonstrues.</p>
+      <a class="btn btn-sm btn-outline-primary" href="http://localhost/PHP-main/project2/public/post.php?id=1">Lexo më shumë</a>
+    </div>
+  
+<div style="text-align:center;color:#6b7280;padding:20px 0">© Vegza Media CMS • PHP + MySQL</div></div></body></html>

@@ -1,7 +1,7 @@
 <?php 
 require_once './auth.php'; 
 $u = current_user(); 
-?>
+?> 
 <!doctype html>
 <html lang="sq">
 <head>
