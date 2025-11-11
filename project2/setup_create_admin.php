@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <select class="form-select" name="role">
           <option value="admin">admin</option>
           <option value="editor">editor</option>
-          <option value="author">author</option>
+          <option value="author">USER</option>
         </select>
       </div>
       <button class="btn btn-primary">Krijo</button>

@@ -2,10 +2,8 @@
 
 
 
-require __DIR__  .'/helpers.php';
-include   './partials/header.php';
-// $rows = fetchAll($pdo, 'SELECT * FROM some_table');
-// print_r($rows);
+require  './helpers.php';
+include   './header.php';
 
 $search = $_GET['q'] ?? '';
 $categoryId = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;
@@ -70,4 +68,4 @@ $posts = fetchAll($pdo, "SELECT p.*, c.name AS category_name FROM posts p
   <?php endforeach; ?>
 <?php endif; ?>
 
-<?php include __DIR__ . '/partials/footer.php'; ?>
+<?php include   './partials/footer.php'; ?>
