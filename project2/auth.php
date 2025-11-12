@@ -1,5 +1,4 @@
 <?php
-
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
 function is_logged_in(): bool { return isset($_SESSION['user']); }
@@ -11,10 +10,10 @@ function require_login(): void {
 
 function login(array $user): void {
   $_SESSION['user'] = [
-    'id' => $user['id'],
-    'name' => $user['name'],
+    'id'    => $user['id'],
+    'name'  => $user['name'],
     'email' => $user['email'],
-    'role' => $user['role'] ?? 'author'
+    'role'  => $user['role'] ?? 'author'
   ];
 }
 
